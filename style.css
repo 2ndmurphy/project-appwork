@@ -198,7 +198,55 @@ input[type="checkbox"] {
 /* PAGE 1 END */
 
 /* PAGE 2 */
+.todo-container {
+  width: 25rem;
+  padding: 20px;
+  border-radius: 10px;
+  margin: auto;
+  background-color: #fcba57;
+}
 
+.todo-container form {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  padding: 15px;
+  background-color: rgb(185, 180, 180);
+  box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
+  -webkit-box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
+  -moz-box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
+}
+
+.todo-container input[type=text] {
+  padding: 8px;
+  border: none;
+}
+
+.todo-container #todo-btn {
+  padding: 8px;
+  border: none;
+}
+
+.todo-container ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  width: auto;
+  border: none;
+  list-style-type: '🚀';
+  background-color: rgb(241, 224, 224);
+  box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
+  -webkit-box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
+  -moz-box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
+}
+
+.todo-container ul li {
+  margin-left: 25px;
+  margin-bottom: 8px;
+}
 /* PAGE 2 END */
 
 
@@ -438,6 +486,13 @@ input[type="checkbox"] {
   .hamburger {
     display: block;
     cursor: pointer;
+  }
+  .todo-container {
+    width: auto;
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    background-color: #fcba57;
   }
   .signature-pad-form {
     width: 100%;
