@@ -162,6 +162,83 @@ todoListData.forEach(item => addItem(item)); // initialize todo's (app start)
 // TODO - List Logic (END)
 
 
+// CALCULATOR STAR
+const calcScreen = document.querySelector('.calc-screen');
+const calcTyped = document.getElementById('calc-typed');
+const calcOperation = document.getElementById('calc-operation');
+
+let currentInput = '';
+let currentOperation = '';
+
+function updateDisplay() {
+    calcTyped.textContent = currentInput;
+    calcOperation.textContent = currentOperation;
+}
+
+function appendToDisplay(value) {
+  if (value === 'AC') {
+      clear();
+  } else if (value === '=') {
+      calculate();
+  } else if (value === 'C') {
+      clearLast();
+  } else if (value === '+/-') {
+      currentInput = currentInput.startsWith('-') ? currentInput.slice(1) : '-' + currentInput;
+  } else if (value === '%') {
+      currentInput = (parseFloat(currentInput) / 100).toString();
+  } else if (value === '.') {
+      if (!currentInput.includes('.')) {
+          currentInput += '.';
+      }
+  } else if (value === 'DEL') {
+      deleteLast();
+  } else {
+      currentInput += value;
+  }
+  updateDisplay();
+}
+
+function clear() {
+  currentInput = '';
+  currentOperation = '';
+  updateDisplay();
+}
+
+function clearLast() {
+  currentInput = currentInput.slice(0, -1);
+  updateDisplay();
+}
+
+function deleteLast() {
+  currentInput = currentInput.slice(0, -1);
+  updateDisplay();
+}
+
+
+
+function calculate() {
+    try {
+        const result = eval(currentOperation + currentInput);
+        currentInput = result.toString();
+        currentOperation = '';
+        updateDisplay();
+    } catch (error) {
+        currentInput = 'Error';
+        currentOperation = '';
+        updateDisplay();
+    }
+}
+
+document.querySelectorAll('.calc-button-row button').forEach(button => {
+    button.addEventListener('click', () => {
+        const buttonText = button.textContent;
+        appendToDisplay(buttonText);
+    });
+});
+
+// CALCULATOR END
+
+
 // Sign Logic (START)
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
@@ -260,3 +337,4 @@ clrButton.addEventListener('click', (event) => {
   }
 });
 // Sign Logic (END)
+
