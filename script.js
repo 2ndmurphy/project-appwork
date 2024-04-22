@@ -39,6 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Fungsi untuk membersihkan Local Storage saat jendela browser ditutup
+window.addEventListener('beforeunload', function() {
+  window.location.href = '#page-1';
+});
+
+
 allButton.forEach(btn => btn.setAttribute("onclick", "setPages(this)"))
 // UI Logic Content (END)
 
