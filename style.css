@@ -254,38 +254,86 @@ input[type="checkbox"] {
 
 /* PAGE 3 */
 .calc-body {
-  width: 300px;
-  margin: 0 auto;
+  width: 400px;
+  margin: auto;
   text-align: center;
+  border: 2px solid pink;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 8px;
+  box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
 }
-
 .calc-screen {
   border: 1px solid #ccc;
-  margin-bottom: 10px;
   text-align: right;
-  height: 30px;
+  height: auto;
+  border-radius: 10px;
 }
-
-.calc-button-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 #calc-typed {
   text-align: end;
   width: 100%;
-  height: 100%;
   color: black;
+  padding: 8px;
+  font-size: 22px;
+  text-decoration-style: bold;
+  border-radius: 10px;
+  border: none;
+  outline: none;
 }
-
-.number, .operator {
-  width: 50px;
-  height: 50px;
+.calc-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px;
+}
+.number-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 5px;
+  gap: 8px;
+}
+.number, .operator, .decimal {
+  width: 40px;
+  height: 40px;
   margin: 5px;
   font-size: 20px;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
 }
-
+.number, .operator, .decimal {
+  transition: transform 0.1s;
+}
+.number:active, .operator:active, .decimal:active {
+  transform: scale(0.95);
+}
+.tools-group {
+  flex: 1;
+  margin-top: 5px;
+  border: 2px solid pink;
+  background-color: rgb(245, 142, 159);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+  -webkit-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+  -moz-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+}
+.delete,.clear, 
+.modulus,.calculate {
+  padding: 8px;
+}
+.ebbra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
 /* PAGE 3 END */
 
 
@@ -560,5 +608,8 @@ input:checked + .slider:before {
     display: flex;
     flex-direction: column;
     gap: 4px;
+  }
+  .calc-body {
+    width: auto;
   }
 }
