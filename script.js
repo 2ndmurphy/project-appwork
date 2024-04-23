@@ -49,20 +49,20 @@ const darkModeToggle = document.getElementById("darkMode");
 const body = document.body;
 
 // Cek status toggle saat halaman dimuat
-if (localStorage.getItem("darkMode") === "enabled") {
+if (sessionStorage.getItem("darkMode") === "enabled") {
   enableDarkMode();
 }
 
 // Fungsi untuk mengaktifkan dark mode
 function enableDarkMode() {
   body.classList.add("darkMode");
-  localStorage.setItem("darkMode", "enabled");
+  sessionStorage.setItem("darkMode", "enabled");
 }
 
 // Fungsi untuk menonaktifkan dark mode
 function disableDarkMode() {
   body.classList.remove("darkMode");
-  localStorage.setItem("darkMode", null);
+  sessionStorage.setItem("darkMode", null);
 }
 
 // Event listener untuk toggle switch
