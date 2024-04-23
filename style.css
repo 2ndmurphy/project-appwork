@@ -263,13 +263,19 @@ input[type="checkbox"] {
   margin-bottom: 10px;
   text-align: right;
   height: 30px;
-  padding: 5px;
 }
 
 .calc-button-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+#calc-typed {
+  text-align: end;
+  width: 100%;
+  height: 100%;
+  color: black;
 }
 
 .number, .operator {
