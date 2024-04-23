@@ -84,15 +84,15 @@ const todoBTN = document.getElementById('todo-btn')
 const todoInput = document.getElementById('todo-input');
 const todoList = document.getElementById('todo-list');
 
-todoBTN.addEventListener('click', function(e) {
+todoBTN.addEventListener('click', function (e) {
   e.preventDefault();
-  
+
   const itemText = todoInput.value.trim();
-  
+
   if (itemText) {
     addItem(itemText);
     todoInput.value = ''; // Mengosongkan input setelah ditambahkan
-    
+
     todoListData.push(itemText)
     saveTodoLS();
   }
@@ -119,10 +119,10 @@ const deleteItem = (li) => {
 const addItem = (text) => {
   var li = document.createElement('li');
   li.textContent = text;
-  
+
   const deleteBtn = createButton("Hapus", () => deleteItem(li));
   const editBtn = createButton("Edit", () => editItem(li, editBtn, deleteBtn));
-  
+
   li.appendChild(editBtn);
   li.appendChild(deleteBtn);
   todoList.appendChild(li);
@@ -131,15 +131,15 @@ const addItem = (text) => {
 const editItem = (li, editBtn, deleteBtn) => {
   editBtn.remove();
   deleteBtn.remove();
-  
+
   const text = li.textContent.trim();
-  
+
   const input = document.createElement('input');
   input.type = 'text';
   input.value = text;
-  
+
   const saveBtn = createButton("Save", () => saveItem(li, input, editBtn, deleteBtn));
-  
+
   li.innerHTML = ''; // clear html element in li
   li.appendChild(input); // add inputs
   li.appendChild(saveBtn); // add buttons
@@ -147,14 +147,14 @@ const editItem = (li, editBtn, deleteBtn) => {
 
 const saveItem = (li, input, editBtn, deleteBtn) => {
   li.innerHTML = ''; // clear html element in li
-  
+
   const newText = input.value.trim();
   li.textContent = newText;
-  
+
   const index = getTodoIndex(li);
   todoListData[index] = newText;
   saveTodoLS();
-  
+
   li.appendChild(editBtn);
   li.appendChild(deleteBtn);
 }
@@ -164,49 +164,47 @@ todoListData.forEach(item => addItem(item)); // initialize todo's (app start)
 
 
 // CALCULATOR STAR
-const calcScreen = document.querySelector('.calc-screen');
 const calcTyped = document.getElementById('calc-typed');
-const calcOperation = document.getElementById('calc-operation');
 
 let currentInput = '';
-let currentOperation = '';
+let isError = false;
 
 function updateDisplay() {
-    calcTyped.textContent = currentInput;
-    calcOperation.textContent = currentOperation;
+  calcTyped.value = currentInput;
 }
 
 function appendToDisplay(value) {
-  if (value === 'AC') {
-      clear();
-  } else if (value === '=') {
-      calculate();
-  } else if (value === 'C') {
-      clearLast();
-  } else if (value === '+/-') {
-      currentInput = currentInput.startsWith('-') ? currentInput.slice(1) : '-' + currentInput;
-  } else if (value === '%') {
-      currentInput = (parseFloat(currentInput) / 100).toString();
-  } else if (value === '.') {
-      if (!currentInput.includes('.')) {
-          currentInput += '.';
-      }
-  } else if (value === 'DEL') {
-      deleteLast();
-  } else {
-      currentInput += value;
+  if (isError) {
+    currentInput = '';
+    isError = false;
   }
+
+  const operators = ['+', '-', '*', '/'];
+
+  switch (value) {
+    case "AC":
+      clear();
+      break;
+    case "DEL":
+      deleteLast();
+      break;
+    case "=":
+      calculate();
+      break;
+    default:
+      if (operators.includes(value) && operators.includes(currentInput.slice(-1))) {
+        currentInput = currentInput.slice(0, -1) + value;
+      } else {
+        currentInput += value;
+      }
+      break;
+  }
+
   updateDisplay();
 }
 
 function clear() {
   currentInput = '';
-  currentOperation = '';
-  updateDisplay();
-}
-
-function clearLast() {
-  currentInput = currentInput.slice(0, -1);
   updateDisplay();
 }
 
@@ -215,28 +213,25 @@ function deleteLast() {
   updateDisplay();
 }
 
-
-
 function calculate() {
-    try {
-        const result = eval(currentOperation + currentInput);
-        currentInput = result.toString();
-        currentOperation = '';
-        updateDisplay();
-    } catch (error) {
-        currentInput = 'Error';
-        currentOperation = '';
-        updateDisplay();
-    }
+  try {
+    const result = math.evaluate(currentInput);
+    currentInput = result.toString();
+  } catch (error) {
+    isError = true;
+    currentInput = 'Error';
+  } finally {
+    updateDisplay();
+  }
 }
 
-document.querySelectorAll('.calc-button-row button').forEach(button => {
-    button.addEventListener('click', () => {
-        const buttonText = button.textContent;
-        appendToDisplay(buttonText);
-    });
-});
-
+document.querySelector('.calc-button-row').addEventListener('click', (e) => {
+  const target = e.target;
+  if (target.closest('button')) {
+    const buttonText = target.textContent;
+    appendToDisplay(buttonText);
+  }
+})
 // CALCULATOR END
 
 
