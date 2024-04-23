@@ -45,12 +45,13 @@ allButton.forEach(btn => btn.setAttribute("onclick", "setPages(this)"))
 
 // darkmode
 // Ambil elemen toggle dan tema yang akan diubah
-const darkModeToggle = document.getElementById("darkMode");
+const darkModeToggle = document.querySelectorAll(".slider-darkMode");
 const body = document.body;
 
 // Cek status toggle saat halaman dimuat
 if (sessionStorage.getItem("darkMode") === "enabled") {
   enableDarkMode();
+  darkModeToggle.forEach((slider) => slider.checked = true);
 }
 
 // Fungsi untuk mengaktifkan dark mode
@@ -66,8 +67,20 @@ function disableDarkMode() {
 }
 
 // Event listener untuk toggle switch
-darkModeToggle.addEventListener("change", () => {
-  darkModeToggle.checked ? enableDarkMode() : disableDarkMode();
+darkModeToggle.forEach((slider) => {
+  slider.addEventListener("click", () => {
+    if (slider.checked) {
+      enableDarkMode();
+    } else {
+      disableDarkMode();
+    }
+
+    darkModeToggle.forEach((otherSlider) => {
+      if (otherSlider !== slider) {
+        otherSlider.checked = slider.checked;
+      }
+    });
+  });
 });
 
 
