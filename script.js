@@ -22,13 +22,13 @@ function setPages(btn) {
   document.getElementById(activeId).style.display = "block"
 
   // Save the active page id to local storage
-  localStorage.setItem('activePageId', activeId);
+  sessionStorage.setItem('activePageId', activeId);
   handleSidebarToggle(); // toggle sidebar every page changes
 }
 
 // Set the active page based on saved value in local storage
 document.addEventListener('DOMContentLoaded', () => {
-  const activePageId = localStorage.getItem('activePageId');
+  const activePageId = sessionStorage.getItem('activePageId');
   if (activePageId) {
     document.getElementById(activePageId).style.display = "block";
     const activeBtnId = activePageId.replace('page', 'btn');
@@ -37,11 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     allContent[0].style.display = "block";
     allButton[0].classList.add('active');
   }
-});
-
-// Fungsi untuk membersihkan Local Storage saat jendela browser ditutup
-window.addEventListener('beforeunload', function() {
-  window.location.href = '#page-1';
 });
 
 
