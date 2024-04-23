@@ -51,6 +51,7 @@ const body = document.body;
 // Cek status toggle saat halaman dimuat
 if (localStorage.getItem("darkMode") === "enabled") {
   enableDarkMode();
+  darkModeToggle.checked = true;
 }
 
 // Fungsi untuk mengaktifkan dark mode
