@@ -179,7 +179,7 @@ todoListData.forEach(item => addItem(item)); // initialize todo's (app start)
 // CALCULATOR STAR
 const calcTyped = document.getElementById('calc-typed');
 
-let currentInput = '';
+let currentInput = '0';
 let isError = false;
 let hasDecimal = false;
 
@@ -225,42 +225,42 @@ function appendToDisplay(value) {
       percentageToDecimal();
       break;
     default:
-      if (currentInput === '0' && (value !== '0' || value !== '00')) {
-        currentInput = value;
-      } else if (operators.includes(value) && operators.includes(currentInput.slice(-(value.length)))) {
-        currentInput = currentInput.slice(0, -(value.length)) + value;
-      } else {
-        currentInput += value;
-      }
+      handleDefault(value, operators);
       break;
   }
 
   updateDisplay();
 }
 
+function handleDefault(value, operators) {
+  if (currentInput === '0' && (value !== '0' && value !== '00')) {
+    currentInput = value;
+  } else if (operators.includes(value) && operators.includes(currentInput.slice(-(value.length)))) {
+    currentInput = currentInput.slice(0, -(value.length)) + value;
+  } else {
+    currentInput += value;
+  }
+}
+
 function clear() {
   currentInput = '0';
-  updateDisplay();
 }
 
 function deleteLast() {
-  currentInput = currentInput.slice(0, -1);
-  if (currentInput === '') {
-    currentInput = '0';
-  }
-  updateDisplay();
+  currentInput = currentInput.slice(0, -1) || '0';
 }
 
 function percentageToDecimal() {
   const lastOperatorIndex = currentInput.search(/[-+*/%^]/g);
   let lastNumber = '';
-
+  
   if (lastOperatorIndex === -1) {
     lastNumber = currentInput;
   } else {
     lastNumber = currentInput.slice(lastOperatorIndex + 1);
   }
-
+  
+  console.log(lastNumber);
   try {
     const result = math.evaluate(`(${lastNumber} / 100)`);
     currentInput = currentInput.substring(0, lastOperatorIndex + 1) + result.toString();
@@ -283,8 +283,6 @@ function calculate() {
       currentInput = 'Error';
     }
   }
-
-  updateDisplay();
 }
 
 document.querySelector('.calc-button-row').addEventListener('click', (e) => {
