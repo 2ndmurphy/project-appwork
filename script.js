@@ -181,6 +181,7 @@ const calcTyped = document.getElementById('calc-typed');
 
 let currentInput = '';
 let isError = false;
+let hasDecimal = false;
 
 function updateDisplay() {
   calcTyped.value = currentInput;
@@ -191,8 +192,24 @@ function appendToDisplay(value) {
     currentInput = '';
     isError = false;
   }
+  
+  const operators = ['+', '-', '*', '/', '^', 'log'];
 
-  const operators = ['+', '-', '*', '/'];
+  if (currentInput === '0' && (value === '0' || value === '00')) {
+    return;
+  }
+
+  if (operators.includes(currentInput.slice(-1))) {
+    hasDecimal = false;
+  }
+
+  if (value === '.') {
+    if (hasDecimal) {
+      return;
+    } else {
+      hasDecimal = true;
+    }
+  }
 
   switch (value) {
     case "AC":
@@ -204,9 +221,14 @@ function appendToDisplay(value) {
     case "=":
       calculate();
       break;
+    case "%":
+      percentageToDecimal();
+      break;
     default:
-      if (operators.includes(value) && operators.includes(currentInput.slice(-1))) {
-        currentInput = currentInput.slice(0, -1) + value;
+      if (currentInput === '0' && (value !== '0' || value !== '00')) {
+        currentInput = value;
+      } else if (operators.includes(value) && operators.includes(currentInput.slice(-(value.length)))) {
+        currentInput = currentInput.slice(0, -(value.length)) + value;
       } else {
         currentInput += value;
       }
@@ -217,25 +239,52 @@ function appendToDisplay(value) {
 }
 
 function clear() {
-  currentInput = '';
+  currentInput = '0';
   updateDisplay();
 }
 
 function deleteLast() {
   currentInput = currentInput.slice(0, -1);
+  if (currentInput === '') {
+    currentInput = '0';
+  }
   updateDisplay();
 }
 
-function calculate() {
+function percentageToDecimal() {
+  const lastOperatorIndex = currentInput.search(/[-+*/%^]/g);
+  let lastNumber = '';
+
+  if (lastOperatorIndex === -1) {
+    lastNumber = currentInput;
+  } else {
+    lastNumber = currentInput.slice(lastOperatorIndex + 1);
+  }
+
   try {
-    const result = math.evaluate(currentInput);
-    currentInput = result.toString();
-  } catch (error) {
+    const result = math.evaluate(`(${lastNumber} / 100)`);
+    currentInput = currentInput.substring(0, lastOperatorIndex + 1) + result.toString();
+  } catch(error) {
+    currentInput = 'Error';
+    isError = true;
+  }
+}
+
+function calculate() {
+  if (currentInput === 'log') {
     isError = true;
     currentInput = 'Error';
-  } finally {
-    updateDisplay();
+  } else {
+    try {
+      const result = math.evaluate(currentInput);
+      currentInput = result.toString();
+    } catch (error) {
+      isError = true;
+      currentInput = 'Error';
+    }
   }
+
+  updateDisplay();
 }
 
 document.querySelector('.calc-button-row').addEventListener('click', (e) => {
