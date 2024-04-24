@@ -254,7 +254,8 @@ input[type="checkbox"] {
 
 /* PAGE 3 */
 .calc-body {
-  width: 400px;
+  width: 450px;
+  height: 280px;
   margin: auto;
   text-align: center;
   border: 2px solid pink;
@@ -283,18 +284,20 @@ input[type="checkbox"] {
   outline: none;
 }
 .calc-button-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
   justify-content: space-between;
   gap: 5px;
+  position: relative;
 }
 .number-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr ;
   margin-top: 5px;
   gap: 8px;
+  padding: 3px;
 }
-.number, .operator, .decimal {
+.number, .operator, .decimal,
+.delete, .clear, .modulus {
   width: 40px;
   height: 40px;
   margin: 5px;
@@ -313,8 +316,11 @@ input[type="checkbox"] {
   transform: scale(0.95);
 }
 .tools-group {
-  flex: 1;
-  margin-top: 5px;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 258px;
+  position: absolute;
+  top: 28%;
+  left: 40%;
   border: 2px solid pink;
   background-color: rgb(245, 142, 159);
   border-radius: 10px;
@@ -324,15 +330,39 @@ input[type="checkbox"] {
 }
 .delete,.clear, 
 .modulus,.calculate {
-  padding: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 14px;
+  text-align: center;
+  border: none;
+  box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+}
+.delete {
+  background-color: yellow;
+  font-weight: bold
+}
+.clear {
+  background-color: rgb(247, 198, 66);
+  font-weight: bold
+}
+.calculate {
+  background-color: rgb(61, 208, 245);
+  font-weight: bold
 }
 .ebbra {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 10px;
+  height: 50px;
+  width: 153%;
+  gap: 12px;
+  margin-top: 5px;
   margin-bottom: 4px;
+  background-color: rgb(168, 166, 166);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+  -webkit-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+  -moz-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
 }
 /* PAGE 3 END */
 
@@ -507,14 +537,10 @@ input:checked + .slider:before {
   }
   .ham-wrapper {
     padding: 1rem;
-    /* margin-bottom: 0.5rem; */
     border-bottom: 2px solid rgba(56, 56, 56, 1);
     background: transparent;
     opacity: 10;
     position: sticky;
-    /* box-shadow: 2px 0px 5px 3px rgba(97,84,84,0.75);
-  -webkit-box-shadow: 2px 0px 5px 3px rgba(63, 19, 19, 0.75);
-  -moz-box-shadow: 2px 0px 5px 3px rgba(97,84,84,0.75); */
     width: 100%;
     display: flex;
   }
@@ -611,5 +637,39 @@ input:checked + .slider:before {
   }
   .calc-body {
     width: auto;
+    height: 482px;
+  }
+  .calc-screen {
+    height: 100px;
+  }
+  #calc-typed {
+    height: 100%;
+    font-size: 4rem;
+  }
+  .number, .operator, .decimal,
+  .delete, .clear, .modulus {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+    background-color: white;
+    border: none;
+    box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+  }
+  .ebbra {
+    height: 60px;
+    width: 200px;
+    position: absolute;
+    left: 42%;
+  }
+  .tools-group {
+    width: 200px;
+    position: absolute;
+    top: 20%;
+    left: 42%;
+    height: 290px;
   }
 }
