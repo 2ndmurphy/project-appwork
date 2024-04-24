@@ -260,7 +260,6 @@ function percentageToDecimal() {
     lastNumber = currentInput.slice(lastOperatorIndex + 1);
   }
   
-  console.log(lastNumber);
   try {
     const result = math.evaluate(`(${lastNumber} / 100)`);
     currentInput = currentInput.substring(0, lastOperatorIndex + 1) + result.toString();
