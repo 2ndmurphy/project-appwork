@@ -198,6 +198,7 @@ input[type="checkbox"] {
 }
 /* PAGE 1 END */
 
+
 /* PAGE 2 */
 .todo-container {
   width: 25rem;
@@ -206,7 +207,6 @@ input[type="checkbox"] {
   margin: auto;
   background-color: #fcba57;
 }
-
 .todo-container form {
   width: auto;
   display: flex;
@@ -219,17 +219,14 @@ input[type="checkbox"] {
   -webkit-box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
   -moz-box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
 }
-
 .todo-container input[type=text] {
   padding: 8px;
   border: none;
 }
-
 .todo-container #todo-btn {
   padding: 8px;
   border: none;
 }
-
 .todo-container ul {
   display: flex;
   flex-direction: column;
@@ -243,7 +240,6 @@ input[type="checkbox"] {
   -webkit-box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
   -moz-box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
 }
-
 .todo-container ul li {
   margin-left: 25px;
   color: #222;
@@ -399,8 +395,6 @@ input[type="checkbox"] {
 .ham-contain {
   display: none;
 }
-
-
 /* Dark mode styles */
 .darkMode {
   background: linear-gradient(to right, #000000, #29232a); /* Warna latar belakang */
@@ -511,7 +505,7 @@ input:checked + .slider:before {
 }
 
 /* MOBILE RESPONSIVE */
-@media (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   body {
     flex-direction: column;
     margin-top: 0;
@@ -670,6 +664,9 @@ input:checked + .slider:before {
     position: absolute;
     top: 20%;
     left: 42%;
-    height: 290px;
+    height: 290px; 
+  }
+  .operator {
+    margin: 10px;
   }
 }
