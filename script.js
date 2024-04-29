@@ -97,6 +97,12 @@ const todoBTN = document.getElementById('todo-btn')
 const todoInput = document.getElementById('todo-input');
 const todoList = document.getElementById('todo-list');
 
+const checkListDisplay = () => {
+  const isListFilled = todoListData.length === 0;
+  todoList.classList.toggle("hide-list", isListFilled);
+}
+checkListDisplay();
+
 todoBTN.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -108,6 +114,7 @@ todoBTN.addEventListener('click', function (e) {
 
     todoListData.push(itemText)
     saveTodoLS();
+    checkListDisplay();
   }
 });
 
@@ -127,10 +134,11 @@ const deleteItem = (li) => {
   todoListData.splice(index, 1);
   saveTodoLS();
   li.remove();
+  checkListDisplay();
 }
 
 const addItem = (text) => {
-  var li = document.createElement('li');
+  const li = document.createElement('li');
   li.textContent = text;
 
   const deleteBtn = createButton("Hapus", () => deleteItem(li));
@@ -139,8 +147,6 @@ const addItem = (text) => {
   li.appendChild(editBtn);
   li.appendChild(deleteBtn);
   todoList.appendChild(li);
-  todoList.setAttribute("id", "show-list")
-  todoList.removeAttribute("hide-list")
 }
 
 const editItem = (li, editBtn, deleteBtn) => {
@@ -174,7 +180,10 @@ const saveItem = (li, input, editBtn, deleteBtn) => {
   li.appendChild(deleteBtn);
 }
 
-todoListData.forEach(item => addItem(item)); // initialize todo's (app start)
+todoListData.forEach(item => {
+  addItem(item);
+  checkListDisplay();
+}); // initialize todo's (app start)
 // TODO - List Logic (END)
 
 
