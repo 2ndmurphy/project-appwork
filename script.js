@@ -139,6 +139,8 @@ const addItem = (text) => {
   li.appendChild(editBtn);
   li.appendChild(deleteBtn);
   todoList.appendChild(li);
+  todoList.setAttribute("id", "show-list")
+  todoList.removeAttribute("hide-list")
 }
 
 const editItem = (li, editBtn, deleteBtn) => {

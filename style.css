@@ -222,17 +222,19 @@ input[type="checkbox"] {
 .todo-container input[type=text] {
   padding: 8px;
   border: none;
+  border-radius: 10px;
 }
 .todo-container #todo-btn {
   padding: 8px;
   border: none;
 }
-.todo-container ul {
+#todo-list {
   display: flex;
+  margin-top: 15px;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px;
-  width: auto;
+  padding: 8px;
+  width: 100%;
   border: none;
   list-style-type: '🚀';
   background-color: rgb(241, 224, 224);
@@ -240,10 +242,29 @@ input[type="checkbox"] {
   -webkit-box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
   -moz-box-shadow: 0px 1px 5px 1px rgba(66,60,60,0.75);
 }
-.todo-container ul li {
+#hide-list {
+  display: none;
+}
+#show-list {
+  display: block;
+}
+#todo-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-left: 25px;
   color: #222;
   margin-bottom: 8px;
+  font-family: Helvetica;
+}
+#todo-list button {
+  background-color: #4b00ff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.todo-container{
 }
 /* PAGE 2 END */
 
@@ -667,6 +688,6 @@ input:checked + .slider:before {
     height: 290px; 
   }
   .operator {
-    margin: 10px;
+    margin-top: 30px;
   }
 }
