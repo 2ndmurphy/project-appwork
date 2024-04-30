@@ -300,6 +300,7 @@ input[type="checkbox"] {
 
 .calc-button-container {
   display: flex;
+  padding-top: 3px;
   height: 210px;
 }
 
