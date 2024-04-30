@@ -9,7 +9,9 @@ hammenu.addEventListener('click', () => handleSidebarToggle());
 
 function handleSidebarToggle() {
   hammenu.classList.toggle('active-menu');
-  sidebar.classList.toggle('active-bar');
+  sidebar.classList.toggle("animate__slideInLeft");
+  //const isToggle = sidebar.classList.contains("animate__animated", "animate__slideInLeft")
+  //isToggle ?  sidebar.classList.remove("animate__animated", "animate__slideInLeft") :  sidebar.classList.add("animate__animated", "animate__slideInLeft")
 }
 
 function setPages(btn) {
@@ -23,7 +25,9 @@ function setPages(btn) {
 
   // Save the active page id to local storage
   sessionStorage.setItem('activePageId', activeId);
-  handleSidebarToggle(); // toggle sidebar every page changes
+  if (window.screen.width < 767) {
+    handleSidebarToggle(); // toggle sidebar every page changes
+  }
 }
 
 // Set the active page based on saved value in local storage

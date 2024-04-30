@@ -616,10 +616,17 @@ input:checked + .slider:before {
     transition: 0.3s ease-in-out;
   }
   .sidebar.active-bar {
-    box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75); /* background overlay (cheap version) */
+    box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
     -webkit-box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
     -moz-box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
     margin-left: 0;
+  }
+  .sidebar.animate__slideInLeft {
+    box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
+    -moz-box-shadow: 65px 0px 150px 500px rgba(0,0,0,0.75);
+    margin-left: 0;
+    --animate-duration: 0.6s;
   }
   .content {
     height: auto;

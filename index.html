@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 </head>
 <body>
   <!-- NAVBAR -->
@@ -25,7 +29,7 @@
   </div>
   
   <div class="container">
-    <div class="sidebar">
+    <div class="sidebar animate__animated">
       <h3>what you doing?</h3>
       <nav>
         <div id="btn-1" class="dashBtn">Dashboard</div>
@@ -52,7 +56,7 @@
 
         <div class="wrapper">
            <!-- Accordion Heading One -->
-          <div class="parent-tab">
+          <div class="parent-tab animate__animated animate__slideInRight">
             <input type="radio" name="tab" id="tab-1" checked>
             <label for="tab-1">
               <span>Introduction of our team-work</span>
@@ -67,7 +71,7 @@
           </div>
 
            <!-- Accordion Heading Two -->
-          <div class="parent-tab">
+          <div class="parent-tab animate__animated animate__slideInDown">
             <input type="radio" name="tab" id="tab-2">
             <label for="tab-2">
               <span>Description To Project</span>
@@ -79,7 +83,7 @@
           </div>
 
           <!-- Accordion Heading Three -->
-          <div class="parent-tab">
+          <div class="parent-tab animate__animated animate__slideInDown">
             <input type="radio" name="tab" id="tab-6">
             <label for="tab-6">
               <span>Tech That We Use and Ideas by💡</span>
@@ -101,7 +105,7 @@
         <div class="title">
           <h1>Simple Notes📝</h1>
         </div>
-        <div class="todo-container">
+        <div class="todo-container animate__animated animate__slideInDown">
           <form>
             <input type="text" id="todo-input" placeholder="Tambahkan tugas baru...">
             <button id="todo-btn">Tambah</button>
@@ -117,7 +121,7 @@
           <h1>Calculator📱</h1>
         </div>
         <!-- Calculator Body -->
-        <div class="calc-body">
+        <div class="calc-body animate__animated animate__fadeIn">
           <div class="calc-screen">
               <input type="text" value="0" id="calc-typed" disabled/>
           </div>
@@ -163,7 +167,7 @@
           <h1>Signature Pad Digital🖨</h1>
           <form class="signature-pad-form" action="#" method="POST">
             <canvas class="signature-pad"></canvas>
-            <div class="btn-group">
+            <div class="btn-group animate__animated animate__bounceIn">
               <button class="clear-button">Save</button>
               <button class="submit-button" type="submit">Clear</button>
             </div>
