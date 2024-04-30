@@ -299,7 +299,7 @@ function calculate() {
   }
 }
 
-document.querySelector('.calc-button-row').addEventListener('click', (e) => {
+document.querySelector('.calc-button-container').addEventListener('click', (e) => {
   const target = e.target;
   if (target.closest('button')) {
     const buttonText = target.textContent;

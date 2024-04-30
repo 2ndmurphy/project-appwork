@@ -272,7 +272,6 @@ input[type="checkbox"] {
   width: 450px;
   height: 280px;
   margin: auto;
-  text-align: center;
   border: 2px solid pink;
   background-color: #fff;
   border-radius: 15px;
@@ -298,18 +297,95 @@ input[type="checkbox"] {
   border: none;
   outline: none;
 }
-.calc-button-row {
+
+.calc-button-container {
+  display: flex;
+  height: 210px;
+}
+
+.number-group {
+  flex: 1;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 0 10px;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+}
+
+.tools-group {
+  flex: 1.3;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.misc-group {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(168, 166, 166);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+  -webkit-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+  -moz-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+}
+
+.operators-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 2px solid pink;
+  background-color: rgb(245, 142, 159);
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+  -webkit-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+  -moz-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+}
+
+.number, .operator, .decimal,
+.delete, .clear, .calculate {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(153,141,141,0.75);
+}
+.number, .operator, .decimal {
+  transition: transform 0.1s;
+}
+.number:active, .operator:active, .decimal:active, .delete:active, .clear:active, .calculate:active {
+  transform: scale(0.95);
+}
+
+.calculate {
+  background-color: rgb(61, 208, 245);
+}
+.delete {
+  background-color: yellow;
+}
+.clear {
+  background-color: rgb(247, 198, 66);
+}
+
+/* .calc-button-row {
   display: grid;
   grid-template-columns: 2fr 2fr 1fr;
   justify-content: space-between;
   gap: 5px;
   position: relative;
+  border: 2px solid red;
 }
 .number-group {
   grid-template-columns: 1fr 1fr 1fr ;
   margin-top: 5px;
   gap: 8px;
   padding: 3px;
+  border: 2px solid red;
 }
 .number, .operator, .decimal,
 .delete, .clear, .modulus {
@@ -342,6 +418,7 @@ input[type="checkbox"] {
   box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
   -webkit-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
   -moz-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
+  border: 2px solid red;
 }
 .delete,.clear, 
 .modulus,.calculate {
@@ -378,7 +455,8 @@ input[type="checkbox"] {
   box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
   -webkit-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
   -moz-box-shadow: inset 0px 0px 5px 3px rgba(153, 141, 141, 1);
-}
+  border: 2px solid red;
+} */
 /* PAGE 3 END */
 
 
@@ -657,7 +735,8 @@ input:checked + .slider:before {
   }
   .calc-body {
     width: auto;
-    height: 482px;
+    height: 500px;
+
   }
   .calc-screen {
     height: 100px;
@@ -666,7 +745,31 @@ input:checked + .slider:before {
     height: 100%;
     font-size: 4rem;
   }
-  .number, .operator, .decimal,
+
+  .calc-button-container {
+
+    height: 370px;
+  }
+
+  .number, .decimal {
+    width: 45px;
+    height: 45px;
+  }
+
+  .operator, .delete, .clear, .calculate {
+    width: 50px;
+    height: 50px;
+  }
+
+  .number-group {
+    gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+  }
+  .operators-group {
+    align-items: center;
+    height: 100%;
+  }
+  /* .number, .operator, .decimal,
   .delete, .clear, .modulus {
     width: 50px;
     height: 50px;
@@ -694,5 +797,5 @@ input:checked + .slider:before {
   }
   .operator {
     margin-top: 30px;
-  }
+  } */
 }
