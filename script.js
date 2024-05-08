@@ -394,7 +394,7 @@ saveButton.addEventListener('click', (event) => {
     const imageURL = canvas.toDataURL();
     const downloadLink = document.createElement('a');
     downloadLink.href = imageURL;
-    downloadLink.download = 'digitalSignature.png'; // Set the desired file name
+    downloadLink.download = 'digitalSignature.jpg'; // Set the desired file name
     downloadLink.click(); // Trigger download
   }
 });
